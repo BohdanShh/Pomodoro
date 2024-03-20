@@ -11,13 +11,13 @@ type Props = {
 };
 
 const Timer: FC<Props> = ({ activeTab }) => {
-  const { remainingTime, isPaused, textClasses, circleClasses, time, toggleTimerExecution } =
+  const { remainingTime, isPaused, textClasses, circleClasses, time, startTimer, pauseTimer } =
     useTimer(activeTab);
 
   return (
     <button
       className="relative group w-full h-[470px] rounded-full p-7 bg-gradient-to-br from-[#121530] to-[#272c5a] shadow-timer"
-      onClick={toggleTimerExecution}
+      onClick={isPaused ? startTimer : pauseTimer}
     >
       <div className="relative w-full h-full rounded-full p-4 bg-textDark a">
         <svg className="w-full h-full">
@@ -28,7 +28,7 @@ const Timer: FC<Props> = ({ activeTab }) => {
             r="48%"
             fill="none"
             style={{
-              strokeDashoffset: `calc(var(--dash-array) - (var(--dash-array) * ${toPercentage(time, remainingTime)}) / -100)`,
+              strokeDashoffset: `calc(var(--dash-array) - (var(--dash-array) * ${toPercentage(time, remainingTime + 1)}) / -100)`,
             }}
           ></circle>
         </svg>

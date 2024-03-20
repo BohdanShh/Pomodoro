@@ -14,12 +14,12 @@ type Store = {
   setLongBreakTime: (value: number) => void;
   setActiveColor: (color: Colors) => void;
   setActiveFont: (font: string) => void;
-  toggleIsPaused: (value?: boolean) => void;
+  setPause: (value?: boolean) => void;
 };
 
 export const useStore = create<Store>()(
   persist(
-    (set, get) => ({
+    set => ({
       pomodoroTime: 30,
       shortBreakTime: 5,
       longBreakTime: 15,
@@ -31,15 +31,7 @@ export const useStore = create<Store>()(
       setLongBreakTime: value => set({ longBreakTime: value }),
       setActiveColor: color => set({ activeColor: color }),
       setActiveFont: font => set({ activeFont: font }),
-      toggleIsPaused: value => {
-        if (!value) {
-          set({ isPaused: !get().isPaused });
-
-          return;
-        }
-
-        set({ isPaused: value });
-      },
+      setPause: value => set({ isPaused: value }),
     }),
     { name: 'pomodoro-storage' }
   )

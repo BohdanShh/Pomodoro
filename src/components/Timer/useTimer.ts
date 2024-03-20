@@ -1,18 +1,23 @@
 import classNames from 'classnames';
 import { useEffect, useMemo, useState } from 'react';
+import { workerScript } from 'src/scripts/worker';
 import { useStore } from 'src/store/useStore';
 import { TabVariants } from 'src/types';
+import { getNotificationMessage } from 'src/utils/getNotificationMessage';
+
+const timerWorker = new Worker(workerScript);
 
 export const useTimer = (activeTab: TabVariants) => {
-  const { pomodoroTime, shortBreakTime, longBreakTime, isPaused, activeColor, toggleIsPaused } =
-    useStore(state => ({
+  const { pomodoroTime, shortBreakTime, longBreakTime, isPaused, activeColor, setPause } = useStore(
+    state => ({
       pomodoroTime: state.pomodoroTime,
       shortBreakTime: state.shortBreakTime,
       longBreakTime: state.longBreakTime,
       isPaused: state.isPaused,
       activeColor: state.activeColor,
-      toggleIsPaused: state.toggleIsPaused,
-    }));
+      setPause: state.setPause,
+    })
+  );
 
   const tabTimes = useMemo(
     () => ({
@@ -41,32 +46,43 @@ export const useTimer = (activeTab: TabVariants) => {
 
   const [remainingTime, setRemainingTime] = useState<number>(tabTimes[activeTab]);
 
-  const toggleTimerExecution = (): void => toggleIsPaused();
+  const startTimer = () => {
+    setPause(false);
+    timerWorker.postMessage({ command: 'start', time: remainingTime });
+  };
+
+  const pauseTimer = () => {
+    setPause(true);
+    timerWorker.postMessage({ command: 'pause', pausedTime: remainingTime });
+  };
 
   useEffect(() => {
     setRemainingTime(tabTimes[activeTab] * 60);
-  }, [activeTab, tabTimes]);
+  }, [tabTimes, activeTab]);
 
   useEffect(() => {
-    let intervalId: ReturnType<typeof setInterval> | null = null;
+    timerWorker.onmessage = ({ data: { timer } }) => {
+      setRemainingTime(timer);
+    };
+  }, []);
 
-    if (!isPaused) {
-      intervalId = setInterval(() => {
-        setRemainingTime(prev => prev - 1);
-      }, 1000);
-    }
+  useEffect(() => {
+    if (remainingTime < 0) {
+      setPause(true);
 
-    if (remainingTime < 0 && intervalId) {
-      alert('Done');
-      clearInterval(intervalId);
+      Notification.requestPermission(permission => {
+        if (permission === 'granted') {
+          const { title, body } = getNotificationMessage(activeTab);
+
+          new Notification(title, { body });
+        }
+      });
+
+      setRemainingTime(tabTimes[activeTab] * 60);
 
       return;
     }
-
-    return () => {
-      if (intervalId) clearInterval(intervalId);
-    };
-  }, [isPaused, remainingTime]);
+  }, [remainingTime, tabTimes, activeTab, setPause, setRemainingTime]);
 
   return {
     remainingTime,
@@ -74,6 +90,7 @@ export const useTimer = (activeTab: TabVariants) => {
     textClasses,
     circleClasses,
     time: tabTimes[activeTab],
-    toggleTimerExecution,
+    startTimer,
+    pauseTimer,
   };
 };

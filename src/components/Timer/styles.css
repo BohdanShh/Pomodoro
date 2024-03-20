@@ -1,5 +1,5 @@
 circle {
-  --dash-array: 1186px;
+  --dash-array: 1190px;
   stroke: var(--color-selected);
   stroke-linecap: round;
   stroke-width: 10;
