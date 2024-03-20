@@ -115,6 +115,7 @@ const Modal: FC<Props> = ({ isOpen, setIsOpen }) => {
           </div>
           <button
             className={buttonClasses}
+            disabled={Object.values(times).some(time => time <= 0)}
             onClick={applyChanges}
           >
             Apply

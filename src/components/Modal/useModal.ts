@@ -59,10 +59,8 @@ export const useModal = (setIsOpen: Dispatch<SetStateAction<boolean>>) => {
     if (hasUnsavedChanges) {
       const isConfirmed = confirm('Did you save your changes?');
 
-      if (isConfirmed) {
+      if (isConfirmed && Object.values(times).some(time => time > 0)) {
         applyChanges();
-
-        return;
       }
 
       return;
@@ -82,10 +80,11 @@ export const useModal = (setIsOpen: Dispatch<SetStateAction<boolean>>) => {
     }
 
     setTimes(prev => ({ ...prev, [timerName]: value }));
+    setHasUnsavedChanges(true);
   };
 
   const buttonClasses = classNames(
-    'absolute bottom-0 left-1/2 w-[140px] p-3 rounded-3xl font-semibold text-center text-white -translate-x-1/2 translate-y-1/2',
+    'absolute bottom-0 left-1/2 w-[140px] p-3 rounded-3xl font-semibold text-center text-white -translate-x-1/2 translate-y-1/2 disabled:cursor-not-allowed',
     {
       'bg-red': activeColor === 'red',
       'bg-lightblue': activeColor === 'lightblue',
