@@ -6,7 +6,10 @@ type Props = {
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>;
 
 const NumberInput: FC<Props> = ({ label, className, ...props }) => {
-  const inputClasses = classNames('w-full p-2 rounded-xl bg-lightgrey font-medium', className);
+  const inputClasses = classNames(
+    'w-full p-2 rounded-xl bg-lightgrey outline-none border-[1px] border-transparent font-medium out-of-range:border-[1px] out-of-range:border-[red] out-of-range:border-solid',
+    className
+  );
 
   return (
     <div className="flex flex-col gap-2">

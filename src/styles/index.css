@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Manuale';
+  font-weight: 400;
+  src: url('../assets/fonts/Manuale-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Manuale';
+  font-weight: 500;
+  src: url('../assets/fonts/Manuale-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Manuale';
+  font-weight: 700;
+  src: url('../assets/fonts/Manuale-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  src: url('../assets/fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 500;
+  src: url('../assets/fonts/Montserrat-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 700;
+  src: url('../assets/fonts/Montserrat-Bold.ttf');
+}

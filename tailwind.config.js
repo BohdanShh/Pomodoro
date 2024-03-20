@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#161932',
+        textDark: '#161932 !important',
+        textLight: '#d7e0ff',
         lightgrey: '#eff1fa',
         red: '#f87070',
         lightblue: '#70f3f8',
@@ -12,6 +13,9 @@ export default {
       },
       boxShadow: {
         timer: '-2rem -2rem 10rem 0 #272c5a, 2rem 2rem 10rem 0 #121530',
+      },
+      fontFamily: {
+        montserrat: ['Montserrat', 'sans-serif'],
       },
     },
   },

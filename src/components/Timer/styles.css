@@ -1,0 +1,12 @@
+circle {
+  --dash-array: 1186px;
+  stroke: var(--color-selected);
+  stroke-linecap: round;
+  stroke-width: 10;
+  stroke-dasharray: var(--dash-array);
+  transform-origin: center center;
+  transform: rotate(-90deg);
+  transition:
+    stroke-dashoffset 1s linear,
+    stroke 0.8s linear;
+}
