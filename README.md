@@ -24,7 +24,7 @@ To launch Pomodoro locally:
 1. Clone the repository.
 2. Run `yarn install` to install dependencies.
 3. Run `yarn dev` to launch the project.
-4. Access the application in your web browser at `http://localhost:3000`.
+4. Access the application in your web browser at `http://localhost:5173`.
 
 ## Screenshots
 
