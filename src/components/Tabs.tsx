@@ -29,7 +29,7 @@ const Tabs: FC<Props> = ({ activeTab, onActiveTabChange }) => {
 
   const buttonClasses = (tabName: string) => {
     return classNames(
-      'w-[33.333%] py-3 text-center font-bold text-[#797f9d] hover:text-textLight transition-all duration-500',
+      'w-[33.333%] py-2 text-center text-xs font-bold text-[#797f9d] hover:text-textLight transition-all duration-500 sm:py-3 sm:text-base',
       {
         'text-textDark hover:text-textDark': activeTab === tabName,
       }

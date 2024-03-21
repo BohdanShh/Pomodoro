@@ -35,6 +35,8 @@ export const useModal = (setIsOpen: Dispatch<SetStateAction<boolean>>) => {
   const [font, setFont] = useState(activeFont);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
+  const areCorrectTimeValues = Object.values(times).every(time => time > 0);
+
   const handleColorChange = (color: Colors) => () => {
     setHasUnsavedChanges(true);
     setColor(color);
@@ -57,7 +59,7 @@ export const useModal = (setIsOpen: Dispatch<SetStateAction<boolean>>) => {
 
   const closeModal = () => {
     if (hasUnsavedChanges) {
-      if (Object.values(times).some(time => time <= 0)) return;
+      if (!areCorrectTimeValues) return;
 
       if (confirm('You have unsaved changes. Do you want to save them?')) {
         applyChanges();
@@ -112,6 +114,7 @@ export const useModal = (setIsOpen: Dispatch<SetStateAction<boolean>>) => {
     color,
     buttonClasses,
     modalClasses,
+    areCorrectTimeValues,
     fontClasses,
     handleColorChange,
     applyChanges,

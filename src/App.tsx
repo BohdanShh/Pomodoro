@@ -34,8 +34,8 @@ const App: FC = () => {
   return (
     <>
       <div className={appClasses}>
-        <div className="max-w-[500px] px-[15px] w-full flex flex-col items-center justify-center gap-[50px]">
-          <h1 className="text-4xl text-textLight font-bold">Pomodoro</h1>
+        <div className="max-w-[330px] px-[15px] w-full flex flex-col items-center justify-center gap-[30px] sm:max-w-[500px] sm:gap-[50px]">
+          <h1 className="text-2xl text-textLight font-bold sm:text-4xl">Pomodoro</h1>
           <Tabs
             activeTab={activeTab}
             onActiveTabChange={setActiveTab}

@@ -29,7 +29,7 @@ export const useTimer = (activeTab: TabVariants) => {
   );
 
   const textClasses = classNames(
-    'text-white text-xl uppercase tracking-[10px] font-semibold transition-all duration-500',
+    'text-white text-sm uppercase tracking-[10px] font-semibold transition-all duration-500 sm:text-xl',
     {
       'group-hover:text-red': activeColor === 'red',
       'group-hover:text-lightblue': activeColor === 'lightblue',

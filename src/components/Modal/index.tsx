@@ -18,6 +18,7 @@ const Modal: FC<Props> = ({ isOpen, setIsOpen }) => {
     color,
     buttonClasses,
     modalClasses,
+    areCorrectTimeValues,
     fontClasses,
     handleColorChange,
     applyChanges,
@@ -40,7 +41,7 @@ const Modal: FC<Props> = ({ isOpen, setIsOpen }) => {
           <button
             className="disabled:cursor-not-allowed"
             onClick={closeModal}
-            disabled={Object.values(times).some(time => time <= 0)}
+            disabled={!areCorrectTimeValues}
           >
             <Close />
           </button>
@@ -119,7 +120,7 @@ const Modal: FC<Props> = ({ isOpen, setIsOpen }) => {
           </div>
           <button
             className={buttonClasses}
-            disabled={Object.values(times).some(time => time <= 0)}
+            disabled={!areCorrectTimeValues}
             onClick={applyChanges}
           >
             Apply

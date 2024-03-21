@@ -1,5 +1,5 @@
 circle {
-  --dash-array: 1190px;
+  --dash-array: 1175px;
   stroke: var(--color-selected);
   stroke-linecap: round;
   stroke-width: 10;
@@ -9,4 +9,10 @@ circle {
   transition:
     stroke-dashoffset 1s linear,
     stroke 0.8s linear;
+}
+
+@media (max-width: 639.8px) {
+  circle {
+    --dash-array: 750px;
+  }
 }

@@ -16,7 +16,7 @@ const Timer: FC<Props> = ({ activeTab }) => {
 
   return (
     <button
-      className="relative group w-full h-[470px] rounded-full p-7 bg-gradient-to-br from-[#121530] to-[#272c5a] shadow-timer"
+      className="relative group w-full h-[300px] rounded-full p-3 bg-gradient-to-br from-[#121530] to-[#272c5a] shadow-timer sm:h-[470px] sm:p-7"
       onClick={isPaused ? startTimer : pauseTimer}
     >
       <div className="relative w-full h-full rounded-full p-4 bg-textDark a">
@@ -28,13 +28,13 @@ const Timer: FC<Props> = ({ activeTab }) => {
             r="48%"
             fill="none"
             style={{
-              strokeDashoffset: `calc(var(--dash-array) - (var(--dash-array) * ${toPercentage(time, remainingTime + 1)}) / -100)`,
+              strokeDashoffset: `calc(var(--dash-array) - (var(--dash-array) * ${toPercentage(time, remainingTime)}) / -100)`,
             }}
           ></circle>
         </svg>
       </div>
       <div className="absolute top-1/2 left-1/2 flex flex-col gap-5 -translate-x-1/2 -translate-y-1/2">
-        <div className="text-7xl font-bold text-white">{toHHMMSS(remainingTime)}</div>
+        <div className="text-3xl font-bold text-white sm:text-7xl">{toHHMMSS(remainingTime)}</div>
         <div className={textClasses}>{isPaused ? 'start' : 'pause'}</div>
       </div>
     </button>
