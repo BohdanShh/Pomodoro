@@ -25,8 +25,7 @@ export const useTimer = (activeTab: TabVariants) => {
       shortBreak: shortBreakTime,
       longBreak: longBreakTime,
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [pomodoroTime, shortBreakTime, longBreakTime]
   );
 
   const textClasses = classNames(
@@ -44,7 +43,7 @@ export const useTimer = (activeTab: TabVariants) => {
     'stroke-purple': activeColor === 'purple',
   });
 
-  const [remainingTime, setRemainingTime] = useState<number>(tabTimes[activeTab]);
+  const [remainingTime, setRemainingTime] = useState<number>(tabTimes[activeTab] * 60);
 
   const startTimer = () => {
     setPause(false);
@@ -64,19 +63,20 @@ export const useTimer = (activeTab: TabVariants) => {
     timerWorker.onmessage = ({ data: { timer } }) => {
       setRemainingTime(timer);
     };
+
+    return () => setPause(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (remainingTime < 0) {
       setPause(true);
 
-      Notification.requestPermission(permission => {
-        if (permission === 'granted') {
-          const { title, body } = getNotificationMessage(activeTab);
+      if (Notification.permission === 'granted') {
+        const { title, body } = getNotificationMessage(activeTab);
 
-          new Notification(title, { body });
-        }
-      });
+        new Notification(title, { body });
+      }
 
       setRemainingTime(tabTimes[activeTab] * 60);
 

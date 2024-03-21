@@ -37,7 +37,11 @@ const Modal: FC<Props> = ({ isOpen, setIsOpen }) => {
       >
         <div className="flex items-center justify-between p-5 border-b-[2px] border-solid border-[#eae8e8]">
           <h2 className="font-bold text-3xl text-textDark">Settings</h2>
-          <button onClick={closeModal}>
+          <button
+            className="disabled:cursor-not-allowed"
+            onClick={closeModal}
+            disabled={Object.values(times).some(time => time <= 0)}
+          >
             <Close />
           </button>
         </div>

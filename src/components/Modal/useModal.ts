@@ -57,9 +57,9 @@ export const useModal = (setIsOpen: Dispatch<SetStateAction<boolean>>) => {
 
   const closeModal = () => {
     if (hasUnsavedChanges) {
-      const isConfirmed = confirm('Did you save your changes?');
+      if (Object.values(times).some(time => time <= 0)) return;
 
-      if (isConfirmed && Object.values(times).some(time => time > 0)) {
+      if (confirm('You have unsaved changes. Do you want to save them?')) {
         applyChanges();
       }
 

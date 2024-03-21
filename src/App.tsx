@@ -1,7 +1,7 @@
 import 'react-toastify/dist/ReactToastify.css';
 
 import classNames from 'classnames';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import Settings from 'src/assets/svg/settings.svg';
 import Modal from 'src/components/Modal';
@@ -20,6 +20,16 @@ const App: FC = () => {
     'font-montserrat': activeFont === 'montserrat',
     'font-serif': activeFont === 'serif',
   });
+
+  useEffect(() => {
+    if (!('Notification' in window)) {
+      alert('This browser does not support notifications.');
+
+      return;
+    }
+
+    Notification.requestPermission();
+  }, []);
 
   return (
     <>
