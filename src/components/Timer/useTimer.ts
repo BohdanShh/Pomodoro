@@ -63,9 +63,6 @@ export const useTimer = (activeTab: TabVariants) => {
     timerWorker.onmessage = ({ data: { timer } }) => {
       setRemainingTime(timer);
     };
-
-    return () => setPause(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

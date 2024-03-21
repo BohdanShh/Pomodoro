@@ -33,6 +33,13 @@ export const useStore = create<Store>()(
       setActiveFont: font => set({ activeFont: font }),
       setPause: value => set({ isPaused: value }),
     }),
-    { name: 'pomodoro-storage' }
+    {
+      name: 'pomodoro-storage',
+      partialize: state => {
+        return Object.fromEntries(
+          Object.entries(state).filter(([key]) => !['isPaused'].includes(key))
+        );
+      },
+    }
   )
 );
