@@ -1,30 +1,33 @@
-# React + TypeScript + Vite
+# Pomodoro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+The Pomodoro is a productivity tool designed to help users manage their time effectively using the Pomodoro Technique. This technique involves breaking work into intervals, typically 30 minutes in length, separated by short breaks. The app aims to enhance focus, productivity, and work-life balance by encouraging structured work sessions and regular breaks.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+1. **Countdown Timer with Pause:**
+   - Set customizable timer intervals for work sessions and breaks according to your preferences.
+   - Receive notifications about the completion of each session or break to stay informed.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2. **Browser Notifications for Time Expiry:**
+   - Receive browser notifications about the completion of each session or break, even if the app is closed or minimized.
 
-- Configure the top-level `parserOptions` property like this:
+3. **Interface Customization:**
+   - Change the color scheme, fonts, and other interface parameters to create a unique user experience.
+   - Customize the time for each break or work session interval according to your schedule and preferences.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
+## Getting Started
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+To launch Pomodoro locally:
+
+1. Clone the repository.
+2. Run `yarn install` to install dependencies.
+3. Run `yarn dev` to launch the project.
+4. Access the application in your web browser at `http://localhost:5173`.
+
+## Screenshots
+
+![image](https://github.com/BohdanShh/Pomodoro/assets/99605305/2e6e4513-1935-4816-a53d-9f2b4694c39e)
+![image](https://github.com/BohdanShh/Pomodoro/assets/99605305/e4dcd6d7-bd80-4b66-9ef2-9e9a723419f1)
+![image](https://github.com/BohdanShh/Pomodoro/assets/99605305/a036a548-91fd-44bb-9d9c-3e3521907734)
