@@ -2,7 +2,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import classNames from 'classnames';
 import { FC, useEffect, useState } from 'react';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import Settings from 'src/assets/svg/settings.svg';
 import Modal from 'src/components/Modal';
 import Tabs from 'src/components/Tabs';
@@ -22,13 +22,19 @@ const App: FC = () => {
   });
 
   useEffect(() => {
-    if (!('Notification' in window)) {
-      alert('This browser does not support notifications.');
+    (async () => {
+      if (!('Notification' in window)) {
+        alert('This browser does not support notifications.');
 
-      return;
-    }
+        return;
+      }
 
-    Notification.requestPermission();
+      const permission = await Notification.requestPermission();
+
+      if (permission === 'denied') {
+        toast('Please, allow notifications to get session end alerts.', { type: 'info' });
+      }
+    })();
   }, []);
 
   return (

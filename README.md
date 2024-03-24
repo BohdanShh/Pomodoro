@@ -7,10 +7,12 @@ The Pomodoro is a productivity tool designed to help users manage their time eff
 ## Features
 
 1. **Countdown Timer with Pause:**
+
    - Set customizable timer intervals for work sessions and breaks according to your preferences.
    - Receive notifications about the completion of each session or break to stay informed.
 
 2. **Browser Notifications for Time Expiry:**
+
    - Receive browser notifications about the completion of each session or break, even if the app is closed or minimized.
 
 3. **Interface Customization:**
